@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HER ERA | The Inner Glow Project</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff7fa;
+      color: #49333f;
+      text-align: center;
+    }
+
+    header {
+      padding: 55px 20px 35px;
+      background: linear-gradient(180deg, #f8dce8, #fff7fa);
+    }
+
+    h1 {
+      font-size: 43px;
+      letter-spacing: 6px;
+      margin: 15px 0;
+    }
+
+    h2 {
+      color: #9d5878;
+    }
+
+    .subtitle {
+      color: #a36b88;
+      letter-spacing: 3px;
+    }
+
+    section {
+      padding: 25px 20px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      padding: 27px 22px;
+      margin: 20px 0;
+      border-radius: 22px;
+      box-shadow: 0 5px 20px #e8cbd855;
+    }
+
+    .btn, button {
+      display: inline-block;
+      background: #b76e91;
+      color: white;
+      border: none;
+      border-radius: 28px;
+      padding: 14px 23px;
+      margin: 9px 4px;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn:hover, button:hover {
+      background: #925271;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 13px;
+      border: 1px solid #e5bfd0;
+      border-radius: 14px;
+      font: inherit;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 25px 15px;
+      color: #a36b88;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <p>♡ WELCOME TO YOUR NEXT CHAPTER ♡</p>
+    <h1>HER ERA</h1>
+    <p class="subtitle">THE INNER GLOW PROJECT</p>
+    <p>A little space to grow, glow and become.</p>
+    <a class="btn" href="#about">Explore HER ERA ↓</a>
+  </header>
+
+  <section id="about">
+    <div class="card">
+      <h2>♡ Welcome to your era</h2>
+      <p>
+        Your journey is your own. Discover confidence,
+        creativity, self-growth and the power of small steps.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>✨ A Little Encouragement</h2>
+      <p id="affirmation">
+        You are allowed to grow at your own pace.
+      </p>
+      <button onclick="newAffirmation()">
+        Give Me a Reminder ♡
+      </button>
+    </div>
+
+    <div class="card" id="reflection">
+      <h2>📝 Daily Reflection</h2>
+      <p>What is one thing you want to learn or improve?</p>
+      <textarea id="journal"
+        placeholder="Write your thoughts here..."></textarea>
+      <br>
+      <button onclick="saveReflection()">Save My Reflection ♡</button>
+      <p id="status" aria-live="polite"></p>
+      <small>Your reflection is saved only in this browser.</small>
+    </div>
+
+    <div class="card">
+      <h2>✨ Start Your Journey</h2>
+      <p>Your next chapter begins with one small step.</p>
+      <a class="btn" href="#reflection">Begin My Journey ♡</a>
+    </div>
+
+    <div class="card">
+      <h2>🌷 A Note to Yourself</h2>
+      <p>
+        You don't have to be perfect.
+        Keep learning, keep creating and give yourself
+        the time you need to grow.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Made with ♡ for your becoming era.
+    <p>HER ERA · THE INNER GLOW PROJECT</p>
+  </footer>
+
+  <script>
+    const affirmations = [
+      "You are allowed to grow at your own pace. ♡",
+      "Small steps still count. ✨",
+      "Your ideas and voice matter. 🌷",
+      "You don't need everything figured out today.",
+      "You are always allowed to begin again. ♡",
+      "Believe in the person you are becoming."
+    ];
+
+    function newAffirmation() {
+      const current =
+        document.getElementById("affirmation").textContent.trim();
+
+      const choices = affirmations.filter(
+        message => message !== current
+      );
+
+      const next =
+        choices[Math.floor(Math.random() * choices.length)];
+
+      document.getElementById("affirmation").textContent = next;
+    }
+
+    function saveReflection() {
+      const text = document.getElementById("journal").value;
+      const status = document.getElementById("status");
+
+      try {
+        localStorage.setItem("herEraReflection", text);
+        status.textContent = "Your reflection is saved on this device ♡";
+      } catch (error) {
+        status.textContent =
+          "Saving isn't available in this browser. Copy your reflection to keep it.";
+      }
+    }
+
+    try {
+      document.getElementById("journal").value =
+        localStorage.getItem("herEraReflection") || "";
+    } catch (error) {}
+  </script>
+
+</body>
+</html>
